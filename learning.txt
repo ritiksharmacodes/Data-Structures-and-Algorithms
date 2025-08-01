@@ -1,0 +1,3 @@
+If v1 is a vector and you want to insert all elements of v1 at the beginning of v, you should write:
+		
+v.insert( v.begin(), v1.begin(), v1.end() );	// syntax -->  void insert (iterator position, InputIterator first, InputIterator last);
