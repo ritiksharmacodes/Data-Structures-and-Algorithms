@@ -3,28 +3,23 @@ using namespace std;
 
 int main()
 {
-    string s = "pwwkew", str = "", maxs = "";
+    string s = "pwwkew";
+    map<char, int> mpp;
+    int left = 0;
+    string maxs = "";
 
-    for (int right = 0; right < s.length(); right++)
+    for (int i = 0; i < s.length(); i++)
     {
-        char c = s[right];
-
-        int count = 0, j = 0;
-        while (j < str.length())
+        if (mpp.find(s[i]) != mpp.end())
         {
-            if (c == str[j])
-            {
-                maxs = ( str.length() > maxs.length() )? str : maxs;
-                str="";
-                break;
-            }
-            else count++;
-            j++;
+            // char exists on the map
+            if (mpp[s[i]] >= left)
+                left = mpp[s[i]] + 1;
         }
-        if(count == str.length()) str += c;
+        mpp[s[i]] = i;
+        string str = s.substr(left, (i - left) + 1);
+        maxs = (str.length() > maxs.length()) ? str : maxs;
     }
 
     cout << maxs;
-
-    return 0;
 }
